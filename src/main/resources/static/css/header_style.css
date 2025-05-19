@@ -1,0 +1,51 @@
+/* Disable scrolling on the entire page */
+html, body {
+  overflow: hidden; /* Prevent scrolling */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+
+
+/* --- HEADER --- */
+.header {
+  background-color: #fcc204; /* Maintain the yellow background */
+  display: flex;
+  align-items: center; /* Centers content vertically */
+  justify-content: center; /* Centers content horizontally */
+  padding: 20px; 
+  height: 50px; /* Height of the header */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for a clean look */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1001;
+  position: relative; /* Needed for positioning the logo */
+  border-bottom: 3px solid #00005A; /* Elegant bottom border */
+  left: 0; /* Ensure the header spans across the screen */
+}
+
+/* Logo Animation: Move logo from left to right */
+.rotating-corner-logo {
+  animation: moveLogoLeftToRight 10s linear infinite; /* Left to right animation */
+  position: absolute; /* Position logo absolutely within the header */
+  top: 50%; /* Vertically center the logo */
+  transform: translateY(-50%); /* Adjust for perfect vertical centering */
+  z-index: 1; /* Logo should appear above the header content */
+}
+
+/* Increased logo size for visibility */
+.logo {
+  height: 180px; 
+  width: auto;
+  object-fit: contain; /* Ensures the logo maintains aspect ratio */
+  padding: 0; /* No internal padding */
+}
+
+/* --- ANIMATIONS --- */
+
+/* Move logo from left to right across the center */
+@keyframes moveLogoLeftToRight {
+  from { left: -120px; } /* Start off the left side */
+  to { left: 100%; } /* End at the right side of the header */
+}

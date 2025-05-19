@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Salles</title>
+    <link rel="stylesheet" href="/css/header_style.css" />
+    <link rel="stylesheet" href="/css/sidebar_style.css" />
+    <link rel="stylesheet" href="/css/admin_espace.css" />
+    <link rel="stylesheet" href="/css/salles_style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- close button of the modal -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <script src="/js/salles.js"></script>
+    <div class="header">
+      <div class="rotating-corner-logo">
+        <img src="/images/LogoEste.png" alt="ESTE Logo" class="logo" />
+      </div>
+    </div>
+
+    <div
+      th:replace="~{fragments/sidebar :: sidebar(activePage='salles')}"
+    ></div>
+
+    <div class="main-content">
+      <div class="actions-row">
+        <!-- Form for uploading CSV -->
+        <div class="left-actions">
+          <form
+            action="/salles/upload"
+            method="post"
+            enctype="multipart/form-data"
+            id="uploadForm"
+            class="import-form"
+          >
+            <label class="upload-card" for="fileInput">
+              <span class="upload-label"
+                >Cliquez ou déposez votre fichier CSV ici</span
+              >
+              <input
+                id="fileInput"
+                type="file"
+                name="file"
+                accept=".csv"
+                required
+              />
+            </label>
+            <div id="fileName" style="margin-top: 10px; font-size: 14px"></div>
+            <button type="submit">Importer</button>
+          </form>
+        </div>
+
+        <!-- Add Salle Button -->
+        <div class="right-actions">
+          <button class="add-btn-salle" id="openModalBtn-salle">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Table displaying rooms -->
+      <div class="table-container">
+        <table id="sallesTable">
+          <thead>
+            <tr>
+              <th>Numéro Salle</th>
+              <th>Capacité</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="salle : ${salles}">
+              <td th:text="${salle.numeroSalle}"></td>
+              <td th:text="${salle.capacity}"></td>
+              <td th:text="${salle.type}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Modal for adding a room -->
+    <div id="addSalleModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            <span class="icon">🏫</span> Ajouter une Salle
+          </h2>
+          <button class="close" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="addSalleForm">
+          <input
+            type="text"
+            name="numeroSalle"
+            placeholder="Numéro Salle"
+            required
+          />
+          <input
+            type="number"
+            name="capacity"
+            placeholder="Capacité"
+            required
+          />
+          <input type="text" name="type" placeholder="Type" required />
+          <button type="submit">Ajouter</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

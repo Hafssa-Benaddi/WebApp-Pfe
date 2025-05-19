@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Professeurs</title>
+    <link rel="stylesheet" href="/css/header_style.css" />
+    <link rel="stylesheet" href="/css/sidebar_style.css" />
+    <link rel="stylesheet" href="/css/admin_espace.css" />
+    <link rel="stylesheet" href="/css/professors_style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- close button of the modal -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <script src="/js/professors.js"></script>
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <div class="rotating-corner-logo">
+        <img src="/images/LogoEste.png" alt="ESTE Logo" class="logo" />
+      </div>
+    </div>
+
+    <!-- Sidebar (fragment inclus) -->
+    <div
+      th:replace="~{fragments/sidebar :: sidebar(activePage='professors')}"
+    ></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Zone actions combinée -->
+      <div class="actions-row">
+        <!-- Formulaire d'importation -->
+        <div class="left-actions">
+          <form
+            action="/professors/upload"
+            method="post"
+            enctype="multipart/form-data"
+            id="uploadForm"
+            class="import-form"
+          >
+            <label class="upload-card" for="fileInput">
+              <span class="upload-label"
+                >Cliquez ou déposez votre fichier CSV ici</span
+              >
+              <input
+                id="fileInput"
+                type="file"
+                name="file"
+                accept=".csv"
+                required
+              />
+            </label>
+            <div id="fileName" style="margin-top: 10px; font-size: 14px"></div>
+            <button type="submit">Importer</button>
+          </form>
+        </div>
+        <!-- Bouton ajouter -->
+        <div class="right-actions">
+          <button class="add-btn" onclick="openModal()">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Message de succès -->
+      <div th:if="${message}" class="success-message">
+        <p th:text="${message}"></p>
+      </div>
+
+      <!-- Message d'erreur -->
+      <div th:if="${error}" class="error-message">
+        <p th:text="${error}"></p>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Rechercher par Nom..."
+        />
+        <select id="departmentFilter">
+          <option value="">Tous les départements</option>
+        </select>
+      </div>
+
+      <!-- Liste des professeurs -->
+      <div class="table-container">
+        <table id="professorTable">
+          <thead>
+            <tr>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Département</th>
+              <th>Spécialité</th>
+              <th>Numéro Bureau</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="professor : ${professors}">
+              <td th:text="${professor.firstName}"></td>
+              <td th:text="${professor.lastName}"></td>
+              <td th:text="${professor.emailAcademic}"></td>
+              <td th:text="${professor.department}"></td>
+              <td th:text="${professor.speciality}"></td>
+              <td th:text="${professor.officeNumber}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- add professor modal -->
+    <div id="addProfessorModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            <span class="icon">👨‍🏫</span> Ajouter un Professeur
+          </h2>
+          <button class="close" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+            <!-- Icône "X" de FontAwesome -->
+          </button>
+        </div>
+
+        <form method="post" action="/professors/add">
+          <input name="firstName" placeholder="Prénom" required />
+          <input name="lastName" placeholder="Nom" required />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email académique"
+            required
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="Mot de passe"
+            required
+          />
+          <input name="officeNumber" placeholder="Numéro bureau" />
+          <input name="speciality" placeholder="Spécialité" />
+          <input name="department" placeholder="Département" required />
+
+          <button type="submit">Ajouter</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

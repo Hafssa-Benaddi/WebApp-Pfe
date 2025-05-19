@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Modules par Filière</title>
+    <link rel="stylesheet" href="/css/header_style.css" />
+    <link rel="stylesheet" href="/css/sidebar_style.css" />
+    <link rel="stylesheet" href="/css/admin_espace.css" />
+    <link rel="stylesheet" href="/css/modules_style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="rotating-corner-logo">
+        <img src="/images/LogoEste.png" alt="ESTE Logo" class="logo" />
+      </div>
+    </div>
+
+    <div
+      th:replace="~{fragments/sidebar :: sidebar(activePage='modules')}"
+    ></div>
+
+    <div class="main-content">
+      <div class="module-container">
+        <div class="add-btn-container">
+          <button class="add-btn" onclick="openModuleModal()">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+
+        <div class="module-grid">
+          <!-- Boucle déplacée ici -->
+          <div class="module-card" th:each="filiere : ${filieres}">
+            <div class="card-header">
+              <h2 th:text="${filiere.name}"></h2>
+              <button class="toggle-btn" onclick="toggleDetails(this)">
+                ▼
+              </button>
+            </div>
+            <div class="module-details">
+              <ul>
+                <li th:each="module : ${filiere.modules}">
+                  <p>
+                    <strong>Module:</strong>
+                    <span th:text="${module.moduleName}"></span>
+                  </p>
+                  <p>
+                    <strong>Code:</strong>
+                    <span th:text="${module.moduleCode}"></span>
+                  </p>
+                  <p>
+                    <strong>Heures par semaine:</strong>
+                    <span th:text="${module.hoursPerWeek}"></span>
+                  </p>
+                  <p>
+                    <strong>Semestre:</strong>
+                    <span th:text="${module.semester}"></span>
+                  </p>
+                  <p>
+                    <strong>Professeur:</strong>
+                    <span th:text="${module.professorName}"></span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal d'ajout Module -->
+    <div id="addModuleModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            <span class="icon">📚</span> Ajouter un Module
+          </h2>
+          <button class="close" onclick="hideModuleModal()">&times;</button>
+        </div>
+
+        <form method="post" action="/modules/add" th:object="${module}">
+          <input
+            type="text"
+            th:field="*{name}"
+            placeholder="Nom du Module"
+            required
+          />
+
+          <select th:field="*{professeurId}" required>
+            <option value="" disabled selected>Choisir un professeur</option>
+            <option
+              th:each="prof : ${professeurs}"
+              th:value="${prof.id}"
+              th:text="${prof.firstName} + ' ' + ${prof.lastName}"
+            ></option>
+          </select>
+
+          <select th:field="*{filiereId}" required>
+            <option value="" disabled selected>Choisir une filière</option>
+            <option
+              th:each="filiere : ${filieres}"
+              th:value="${filiere.id}"
+              th:text="${filiere.name}"
+            ></option>
+          </select>
+
+          <select th:field="*{semestre}" required>
+            <option value="" disabled selected>Choisir un semestre</option>
+            <option value="S1">S1</option>
+            <option value="S2">S2</option>
+            <option value="S3">S3</option>
+            <option value="S4">S4</option>
+            <option value="S5">S5</option>
+            <option value="S6">S6</option>
+          </select>
+
+          <button type="submit">Ajouter</button>
+        </form>
+      </div>
+    </div>
+    <script src="/js/modules.js"></script>
+  </body>
+</html>

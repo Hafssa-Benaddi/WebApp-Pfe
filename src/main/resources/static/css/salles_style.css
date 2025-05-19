@@ -1,0 +1,226 @@
+/* --- MODAL STYLING --- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: radial-gradient(rgba(0, 0, 90, 0.5), rgba(0, 0, 0, 0.7));
+  padding-top: 100px;
+  backdrop-filter: blur(10px);
+}
+
+.modal-content {
+  background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+  margin: auto;
+  padding: 30px 40px;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 90, 0.2);
+  position: relative;
+  animation: fadeInModal 0.4s ease-out;
+  border: 2px solid #fcc204;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  background-color: #fcc204;
+  color: #00005A;
+  padding: 12px 20px;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -30px -40px 20px -40px;
+}
+/* --- CLOSE BUTTON --- */
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fcc204; /* Jaune */
+  color: #00005A; /* Bleu foncé */
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Style de l'icône FontAwesome à l'intérieur du bouton */
+.modal .close i {
+  font-size: 20px; /* Taille de l'icône */
+}
+
+/* Effet au survol */
+.modal .close:hover {
+  background-color: #00005A; /* Bleu */
+  color: #fcc204; /* Jaune */
+  transform: scale(1.1);
+}
+/* --- UPLOAD CARD --- */
+.upload-card {
+  background: #f9f9f9;
+  border: 2px dashed #fcc204;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  transition: background-color 0.3s, border-color 0.3s;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.upload-card:hover {
+  background-color: #fff7e0;
+  border-color: #00005A;
+}
+
+.upload-card input[type="file"] {
+  display: none;
+}
+
+.upload-label {
+  font-size: 16px;
+  color: #00005A;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* --- BUTTON --- */
+button[type="submit"] {
+  background-color: #00005A;
+  color: white;
+  padding: 10px 22px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #fcc204;
+  color: #00005A;
+  transform: scale(1.05);
+}
+
+/* actions row! */
+.actions-row {
+  display: flex;
+  justify-content: space-between; /* Sépare les deux parties */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.left-actions {
+  flex-grow: 1; /* Prend toute la place restante */
+}
+
+.right-actions {
+  margin-left: auto; /* Pousse à droite */
+}
+
+/* --- ADD BUTTON --- */
+.add-btn-salle {
+  background-color: #fcc204;
+  color: #00005A;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-btn-salle i {
+  margin-right: 6px;
+}
+
+.add-btn-salle:hover {
+  background-color: #f4b400;
+}
+/* --- TABLE STYLING --- */
+.table-container {
+  margin-top: 20px;
+}
+
+#sallesTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#sallesTable th, #sallesTable td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  word-wrap: break-word;
+}
+
+#sallesTable th {
+  background-color: #fcc204;
+  color: #00005A;
+}
+
+
+
+/* --- FORM STYLING --- */
+.form-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  background-color: #fefefe;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+  border-color: #fcc204;
+  box-shadow: 0 0 6px rgba(252, 194, 4, 0.3);
+  outline: none;
+}
+
+/* --- MODAL BUTTON --- */
+.modal-content button {
+  width: 100%;
+  background-color: #00005A;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 12px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content button:hover {
+  background-color: #fcc204;
+  color: #00005A;
+  transform: scale(1.04);
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Filières</title>
+    <link rel="stylesheet" href="/css/header_style.css" />
+    <link rel="stylesheet" href="/css/sidebar_style.css" />
+    <link rel="stylesheet" href="/css/admin_espace.css" />
+    <link rel="stylesheet" href="/css/filieres_style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+   <script src="/js/filieres.js"></script>
+  <body>
+      
+    <div class="header">
+      <div class="rotating-corner-logo">
+        <img src="/images/LogoEste.png" alt="ESTE Logo" class="logo" />
+      </div>
+    </div>
+    <div
+      th:replace="~{fragments/sidebar :: sidebar(activePage='filieres')}"
+    ></div>
+    <div class="main-content">
+ <div class="table-header">
+     <div class="filter-container">
+    <label for="niveauFilter">
+        <i class="fas fa-filter"></i> Filtrer par niveau :
+    </label>
+    <select id="niveauFilter" onchange="filterFilieres()" class="styled-select">
+        <option value="all">Tous</option>
+        <option value="Licence">Licence</option>
+        <option value="DUT">DUT</option>
+    </select>
+</div>
+    <div class="add-btn-container">
+        <button class="add-btn" onclick="openModal()">
+            <i class="fas fa-plus"></i> 
+        </button>
+    </div>
+</div>
+
+
+ 
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Code Abréviation</th>
+              <th>Chef de Filière</th>
+            </tr>
+          </thead>
+          <tbody>
+    <tr th:each="filiere : ${filieres}" 
+        th:attr="data-niveau=${filiere.niveau}">
+        <td th:text="${filiere.name}"></td>
+        <td th:text="${filiere.code_abrev}"></td>
+        <td th:text="${filiere.responsableName}"></td>
+    </tr>
+</tbody>
+
+        </table>
+      </div>
+    </div>
+
+    <div id="addFiliereModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            <span class="icon">🗂️</span> Ajouter une Filière
+          </h2>
+
+          <button class="close" onclick="hideAddModal()">&times;</button>
+        </div>
+        <form method="post" action="/filieres/add">
+    <!-- Nom de la Filière -->
+    <input name="name" placeholder="Nom de la Filière" required />
+
+    <!-- Code Abréviation -->
+    <input name="code_abrev" placeholder="Code Abréviation" required />
+
+    <!-- Niveau (Licence ou DUT) -->
+    <select name="niveau" required>
+        <option value="" disabled selected>Choisir le niveau</option>
+        <option th:each="niveau : ${niveaux}" th:value="${niveau}" th:text="${niveau}"></option>
+    </select>
+
+    <!-- Responsable (Professeur) -->
+    <select name="responsable_prof_id" required>
+        <option value="" disabled selected>Choisir un responsable</option>
+        <option th:each="prof : ${professeurs}" 
+                th:value="${prof.id}" 
+                th:text="${prof.firstName} + ' ' + ${prof.lastName}">
+        </option>
+    </select>
+
+    <button type="submit">Ajouter</button>
+</form>
+
+
+      </div>
+
+  
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <div th:fragment="sidebar(activePage)">
+      <div class="sidebar">
+        <div class="sidebar-nav">
+          <button
+            class="sidebar-btn"
+            th:classappend="${activePage == 'dashboard'} ? ' active' : ''"
+            th:onclick="|window.location.href='@{/admin}'|"
+          >
+            <i class="fas fa-home"></i>
+            <span>Accueil</span>
+          </button>
+
+          <button
+            class="sidebar-btn"
+            th:classappend="${activePage == 'professors'} ? ' active' : ''"
+            th:onclick="|window.location.href='@{/professors}'|"
+          >
+            <i class="fas fa-chalkboard-teacher"></i>
+            <span>Professeurs</span>
+          </button>
+
+          <button
+            class="sidebar-btn"
+            th:classappend="${activePage == 'filieres'} ? ' active' : ''"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            <span>Filières</span>
+          </button>
+
+          <button
+            class="sidebar-btn"
+            th:classappend="${activePage == 'modules'} ? ' active' : ''"
+          >
+            <i class="fas fa-book"></i>
+            <span>Modules</span>
+          </button>
+
+          <button
+            class="sidebar-btn"
+            th:classappend="${activePage == 'salles'} ? ' active' : ''"
+            th:onclick="|window.location.href='@{/salles}'|"
+          >
+            <i class="fas fa-door-open"></i>
+            <span>Salles</span>
+          </button>
+
+          <button
+            class="sidebar-btn"
+            th:classappend="${activePage == 'emplois'} ? ' active' : ''"
+          >
+            <i class="fas fa-calendar-alt"></i>
+            <span>Emplois Du temps</span>
+          </button>
+        </div>
+
+        <div class="sidebar-profile">
+          <button
+            class="sidebar-btn profile-btn"
+            th:classappend="${activePage == 'profile'} ? ' active' : ''"
+          >
+            <i class="fas fa-user-circle"></i>
+            <span>Profile</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

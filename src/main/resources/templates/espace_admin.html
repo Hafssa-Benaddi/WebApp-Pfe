@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Espace Admin</title>
+    <link rel="stylesheet" href="/css/header_style.css" />
+    <link rel="stylesheet" href="/css/admin_espace.css" />
+    <link rel="stylesheet" href="/css/sidebar_style.css" />
+    <!-- Include sidebar.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <div class="rotating-corner-logo">
+        <img src="/images/LogoEste.png" alt="ESTE Logo" class="logo" />
+      </div>
+    </div>
+
+    <div class="dashboard-container">
+      <div class="sidebar">
+        <!-- Sidebar navigation buttons with activePage passed as 'dashboard' -->
+        <div
+          th:replace="~{fragments/sidebar :: sidebar(activePage='dashboard')}"
+        ></div>
+      </div>
+      <!-- Main admin content goes here -->
+    </div>
+  </body>
+</html>
