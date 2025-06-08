@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscription Admin</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: linear-gradient(to right, #002147, #f4c542);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-container {
+      display: flex;
+      width: 90%;
+      max-width: 1000px;
+      height: 600px;
+      background-color: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgb(255, 255, 255);
+    }
+
+    .image-side {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f4c542;
+    }
+
+    .image-side img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .right-side {
+      flex: 1;
+      background-color: #002147;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .right-side h2 {
+      text-align: center;
+      color: #f4c542;
+      margin-bottom: 20px;
+    }
+
+    form label {
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: #ffffff;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border-radius: 25px;
+      border: none;
+      font-weight: bold;
+      background-color: #f4c542;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #e0b42f;
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .image-side {
+        height: 250px;
+      }
+
+      .right-side {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <div class="image-side">
+      <img src="/images/REGISTER.jpg" alt="Image Admin">
+    </div>
+    <div class="right-side">
+      <h2>Inscription Admin</h2>
+      <form action="/register" method="post">
+        <label>Prénom :</label>
+        <input type="text" name="firstName" required>
+
+        <label>Nom :</label>
+        <input type="text" name="lastName" required>
+
+        <label>Email académique :</label>
+        <input type="email" name="email" required>
+
+        <label>Mot de passe :</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Créer compte admin</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

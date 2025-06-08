@@ -1,0 +1,128 @@
+body {
+    background: #002147;
+    font-family: 'Segoe UI', sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container,
+.login-container,
+form {
+    background-color: rgba(255, 255, 255, 0.06);
+    padding: 40px 30px;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Titre */
+h2 {
+    margin-bottom: 20px;
+    color: #f4c542; 
+    font-size: 26px;
+}
+
+/* Champs */
+form label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: #fff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    background: #fff;
+    color: #002147;
+    border: 1px solid #ccc;
+}
+
+/* Bouton principal */
+button {
+    background-color: #f4c542;
+    color: #002147;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #ffc107;
+}
+
+/* Boutons page admin */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+a button {
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container,
+    .login-container,
+    form {
+        padding: 25px 20px;
+        border-radius: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    input,
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+/* Nouveau wrapper pour disposer l'image et le contenu côte à côte */
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Image à gauche ou à droite */
+.image-side {
+    max-width: 400px;
+    flex-shrink: 0;
+}
+
+.image-side img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
